@@ -1,6 +1,26 @@
 var btnTranslate = document.querySelector("#btn-translate");
 var txtArea = document.querySelector("#txtArea");
 var outputDiv = document.querySelector("#div-output");
-btnTranslate.addEventListener("click",function clickEventHandler() {
-    outputDiv.innerText = "hlaa jhaa hu kanu cha to " + txtArea.value; 
+
+var url = "https://api.funtranslations.com/translate/minion.json"
+
+
+function getUrl(text) {
+    return url + "?" + "text=" + text;
+}
+
+function alertMessage() {
+    return alert("error! Limit reached")
+}
+
+btnTranslate.addEventListener("click", function clickEventHandler() {
+    var text = txtArea.value;
+    fetch(getUrl(text))
+        .then(response => response.json())
+        .then(json => {
+            var translatedText = json.contents.translated;
+            outputDiv.innerText = translatedText;
+        })
+
+
 })
