@@ -20,7 +20,7 @@ btnTranslate.addEventListener("click", function clickEventHandler() {
         .then(json => {
             var translatedText = json.contents.translated;
             outputDiv.innerText = translatedText;
-        })
+        }).catch(err => {alertMessage(err)})
 
 
 })
